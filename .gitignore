@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+target/
+solana-release/
+
+# Build artifacts
+*.tar.bz2
+*.so
+*.rlib
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+
+# Rust
+Cargo.lock
+
+# Solana
+.anchor/
+test-ledger/
+
+# Exclude existing markdown files
+complete deployment guide.md
+complete development guiide.md
+task.md
