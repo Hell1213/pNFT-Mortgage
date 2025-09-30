@@ -1,0 +1,152 @@
+{
+  "version": "0.1.0",
+  "name": "pnft_mortgage_market",
+  "address": "C2kfwjLdi7uJjfNeE25MYqviPcvSokwpxRyrrhYaGCf6",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "protocol",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createLoan",
+      "accounts": [
+        {
+          "name": "loan",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "borrower",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "collateralMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "collateralToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "loanAmount",
+          "type": "u64"
+        },
+        {
+          "name": "duration",
+          "type": "i64"
+        },
+        {
+          "name": "interestRate",
+          "type": "u16"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Loan",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "borrower",
+            "type": "publicKey"
+          },
+          {
+            "name": "lender",
+            "type": "publicKey"
+          },
+          {
+            "name": "collateralMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "loanAmount",
+            "type": "u64"
+          },
+          {
+            "name": "outstandingAmount",
+            "type": "u64"
+          },
+          {
+            "name": "interestRate",
+            "type": "u16"
+          },
+          {
+            "name": "duration",
+            "type": "i64"
+          },
+          {
+            "name": "startTime",
+            "type": "i64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": "LoanStatus"
+            }
+          },
+          {
+            "name": "liquidationThreshold",
+            "type": "u16"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "LoanStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Repaid"
+          },
+          {
+            "name": "Liquidated"
+          },
+          {
+            "name": "InAuction"
+          }
+        ]
+      }
+    }
+  ],
+  "events": [],
+  "errors": []
+}
