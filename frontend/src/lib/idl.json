@@ -1,7 +1,6 @@
 {
   "version": "0.1.0",
   "name": "pnft_mortgage_market",
-  "address": "C2kfwjLdi7uJjfNeE25MYqviPcvSokwpxRyrrhYaGCf6",
   "instructions": [
     {
       "name": "initialize",
@@ -12,9 +11,14 @@
           "isSigner": false
         },
         {
-          "name": "admin",
+          "name": "authority",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
         },
         {
           "name": "systemProgram",
@@ -28,14 +32,19 @@
       "name": "createLoan",
       "accounts": [
         {
-          "name": "loan",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
           "name": "borrower",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "lender",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "protocol",
+          "isMut": false,
+          "isSigner": false
         },
         {
           "name": "collateralMint",
@@ -43,7 +52,7 @@
           "isSigner": false
         },
         {
-          "name": "collateralToken",
+          "name": "loan",
           "isMut": true,
           "isSigner": false
         },
@@ -70,6 +79,38 @@
     }
   ],
   "accounts": [
+    {
+      "name": "Protocol",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "treasury",
+            "type": "publicKey"
+          },
+          {
+            "name": "feeRate",
+            "type": "u16"
+          },
+          {
+            "name": "totalLoans",
+            "type": "u64"
+          },
+          {
+            "name": "totalVolume",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
     {
       "name": "Loan",
       "type": {
@@ -146,7 +187,5 @@
         ]
       }
     }
-  ],
-  "events": [],
-  "errors": []
+  ]
 }
